@@ -4,6 +4,8 @@ description: >
   and helper functions built for internal use across JBDev apps and projects.
 version: 0.0.1
 homepage: https://jbdev.in
+repository: https://github.com/jatinsakshiB/jbdev
+issue_tracker: https://github.com/jatinsakshiB/jbdev/issues
 
 environment:
   sdk: ^3.8.0

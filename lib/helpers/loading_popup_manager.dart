@@ -4,12 +4,10 @@ import '../jbdev.dart';
 import '../ui/widget/loading_popup_widget.dart';
 
 Route? _loadingRoute;
-void showLoading({BuildContext? context}){
-  var ctx = context ?? jbContext;
-  if (ctx == null) return;
+void showLoading(BuildContext context){
   if (_loadingRoute != null) return;
   _loadingRoute = DialogRoute(
-      context: ctx,
+      context: context,
       barrierDismissible: false,
       builder: (context){
         return PopScope(
@@ -22,7 +20,7 @@ void showLoading({BuildContext? context}){
         );
       }
   );
-  Navigator.of(ctx).push(_loadingRoute!);
+  Navigator.of(context).push(_loadingRoute!);
 }
 
 void hideLoading() {

@@ -15,7 +15,7 @@ class LoadingPopupWidget extends StatelessWidget {
       height: 80,
       width: 80,
       child: CupertinoActivityIndicator(
-        color: colors?.primary,
+        color: context.colors.primary,
       ),
     );
   }

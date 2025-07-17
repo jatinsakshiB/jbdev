@@ -13,11 +13,11 @@ extension TextStyleSizes on TextStyle {
   TextStyle get xxxl => copyWith(fontSize: 32);
 
 
-  TextStyle get primary => c(colors?.secondary);
-  TextStyle get onPrimary => c(colors?.onPrimary);
-  TextStyle get secondary => c(colors?.secondary);
-  TextStyle get onSecondary => c(colors?.onSecondary);
-  TextStyle get error => c(colors?.error);
+  TextStyle primary(BuildContext context) => c(context.colors.secondary);
+  TextStyle onPrimary(BuildContext context) => c(context.colors.onPrimary);
+  TextStyle secondary(BuildContext context) => c(context.colors.secondary);
+  TextStyle onSecondary(BuildContext context) => c(context.colors.onSecondary);
+  TextStyle error(BuildContext context) => c(context.colors.error);
 
 
   TextStyle get underline => copyWith(decoration: TextDecoration.underline);

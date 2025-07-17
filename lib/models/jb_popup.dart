@@ -52,8 +52,8 @@ class JBPopup {
         position = position ?? JBPopupPosition.center,
         display = display ?? JBPopupDisplay.dialog;
 
-  void show({BuildContext? context}){
-    showJBPopup(this, context: context);
+  void show(BuildContext context){
+    showJBPopup(context, this);
   }
 
   factory JBPopup.fromJson(Map<String, dynamic> json) => JBPopup(

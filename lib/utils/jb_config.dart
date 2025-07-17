@@ -4,8 +4,6 @@ import 'package:jbdev/jbdev.dart';
 
 
 class JBConfig {
-  static GlobalKey<NavigatorState>? navigatorKey;
-
   static String? baseUrl;
 
   static String defCurrencySymbol = '₹';

@@ -42,7 +42,7 @@ class JBButton extends StatelessWidget {
         ],
         Text(
           text,
-          style: (properties.textStyle ?? textThemes?.bodyMedium)?.c(properties.textColor),
+          style: (properties.textStyle ?? context.textThemes.bodyMedium)?.c(properties.textColor),
         ),
       ],
     );
@@ -54,7 +54,7 @@ class JBButton extends StatelessWidget {
         padding: properties.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           gradient: properties.gradient,
-          color: properties.gradient == null ? properties.color ?? colors?.primary : null,
+          color: properties.gradient == null ? properties.color ?? context.colors.primary : null,
           borderRadius: borderRadius,
           border: properties.borderColor != null
               ? Border.all(

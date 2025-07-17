@@ -7,8 +7,8 @@ import '../ui/jb_bottom_sheet/jb_bottom_sheet.dart';
 import '../ui/widget/jb_bottom_sheet_widget.dart';
 import '../ui/widget/jb_popup_widget.dart';
 
-void showJBPopup(JBPopup popup, {BuildContext? context}) {
-  _JBPopupManager.show(popup, context: context);
+void showJBPopup(BuildContext context, JBPopup popup) {
+  _JBPopupManager.show(context, popup);
 }
 
 void hideJBPopup(String id){
@@ -22,13 +22,11 @@ void hideJBAllPopups(){
 class _JBPopupManager {
   static final Map<String, Route> _popupRoutes = {};
 
-  static Future<void> show(JBPopup popup, {BuildContext? context}) async {
-    final ctx = context ?? jbContext;
-    if (ctx == null || !ctx.mounted) return;
-
+  static Future<void> show(BuildContext context, JBPopup popup) async {
     if (popup.delay != null) {
       await Future.delayed(popup.delay!.milliseconds);
     }
+    if (!context.mounted) return;
 
     Route route;
     if (popup.display == JBPopupDisplay.bottomSheet) {
@@ -62,7 +60,7 @@ class _JBPopupManager {
       );
     } else {
       route = DialogRoute(
-        context: ctx,
+        context: context,
         barrierDismissible: popup.dismissible,
         barrierColor: JBConfig.popupBarrierColor,
         builder: (context) {
@@ -81,7 +79,7 @@ class _JBPopupManager {
                 alignment: popup.position.alignment,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: JBConfig.popupBackgroundColor ?? colors?.surface,
+                    color: JBConfig.popupBackgroundColor ?? context.colors.surface,
                     borderRadius: BorderRadius.all(Radius.circular(JBConfig.popupBorderRadius))
                   ),
                   child: ConstrainedBox(
@@ -111,7 +109,7 @@ class _JBPopupManager {
     }
 
     _popupRoutes[popup.id] = route;
-    Navigator.of(ctx).push(route);
+    Navigator.of(context).push(route);
   }
 
   static void hide(String id) {

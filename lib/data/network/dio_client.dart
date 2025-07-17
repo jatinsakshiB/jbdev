@@ -2,6 +2,7 @@
 import 'dart:io' show Platform;
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:jbdev/jbdev.dart';
 
@@ -84,11 +85,16 @@ class DioClient {
       toast(toastMessage);
     }
     if (data['popup'] != null) {
+      if (_context == null) return;
       JBPopup popup = JBPopup.fromJson(data['popup']);
-      showJBPopup(popup);
+      popup.show(_context!);
     }
   }
 
+  static BuildContext? _context;
+  static set context(BuildContext context) {
+    _context = context;
+  }
   static Dio get dio {
     _addInterceptors();
     return _dio;

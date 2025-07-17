@@ -13,7 +13,7 @@ Wrap your app:
 ```dart
 App.init();
 runApp(Jbdev(
-  builder: (ctx, navKey) => MaterialApp(navigatorKey: navKey, home: HomePage()),
+builder: (ctx) => MaterialApp(navigatorKey: navKey, home: HomePage()),
 ));
 ```
 
@@ -85,14 +85,14 @@ JBConfig.buttons = {
 ### Loading
 
 ```dart
-showLoading(); // show
+showLoading(ctx); // show
 hideLoading(); // hide
 ```
 
 ### Popups
 
 ```dart
-showJBPopup(popup);
+showJBPopup(ctx, popup);
 hideJBPopup("id");
 hideJBAllPopups();
 ```
@@ -120,7 +120,8 @@ Supports icon, gradient, radius, etc.
 ### BuildContext
 
 * `screenWidth`, `isDarkMode`
-* `push("/route")`, `launchAction(JBAction)`
+* `launchAction(JBAction)`
+* `textThemes`, `colors`
 
 ### Enum
 
@@ -149,7 +150,7 @@ Supports icon, gradient, radius, etc.
 
 ### `TextStyle`
 
-* `.sm`, `.xl`, `.primary`, `.underline`, `.ellipsis`
+* `.sm`, `.xl`, `.primary(context)`, `.underline`, `.ellipsis`
 
 ### `Widget`
 
@@ -163,6 +164,28 @@ Supports icon, gradient, radius, etc.
 Log.e("Error"); // 🔴
 Log.i("Info");  // 🔵
 Log.s("Success"); // 🟢
+```
+
+→ Debug only, uses ANSI color in terminal.
+
+---
+
+## 🌐 Apis
+
+```dart
+// Set your base URL and optional API config
+JBConfig.baseUrl = "https://yourdomain.com/api/";
+JBConfig.apiConfig = ApiConfig();
+
+
+try {
+  Api('/endpoint', apiMethod: ApiMethods.get, data: {}).call(ctx).then((response) {
+    // Handle response
+  });
+} catch (e) {
+  // Handle error if needed
+}
+
 ```
 
 → Debug only, uses ANSI color in terminal.

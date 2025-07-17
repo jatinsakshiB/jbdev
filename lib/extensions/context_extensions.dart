@@ -10,6 +10,12 @@ extension ContextExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 
 
+  TextTheme get textThemes => Theme.of(this).textTheme;
+
+  ColorScheme get colors => Theme.of(this).colorScheme;
+
+
+
   void pop<T extends Object?>([T? result]) {
     Navigator.of(this).pop(result);
   }
@@ -35,7 +41,7 @@ extension ContextExtension on BuildContext {
           launchUrlString(action.url!);
         }
       }else if (action.popup != null){
-        showJBPopup(action.popup!, context: this);
+        action.popup?.show(this);
       }
       action.onAction?.call();
     }

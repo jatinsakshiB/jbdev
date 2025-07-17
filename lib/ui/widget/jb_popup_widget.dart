@@ -28,7 +28,7 @@ class JBPopupWidget extends StatelessWidget {
           if (!popup.title.isNullOrEmpty)
             Text(
               popup.title!,
-              style: textThemes?.titleMedium,
+              style: context.textThemes.titleMedium,
             ).withWidth(double.infinity).withSymmetricPadding(horizontal: 16),
           12.heightBox,
 

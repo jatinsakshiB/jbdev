@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jbdev/jbdev.dart';
 
 
 extension TextStyleSizes on TextStyle {
@@ -12,11 +13,11 @@ extension TextStyleSizes on TextStyle {
   TextStyle get xxxl => copyWith(fontSize: 32);
 
 
-  TextStyle primary(BuildContext context) => c(Theme.of(context).colorScheme.primary);
-  TextStyle onPrimary(BuildContext context) => c(Theme.of(context).colorScheme.onPrimary);
-  TextStyle secondary(BuildContext context) => c(Theme.of(context).colorScheme.secondary);
-  TextStyle onSecondary(BuildContext context) => c(Theme.of(context).colorScheme.onSecondary);
-  TextStyle error(BuildContext context) => c(Theme.of(context).colorScheme.error);
+  TextStyle get primary => c(colors?.secondary);
+  TextStyle get onPrimary => c(colors?.onPrimary);
+  TextStyle get secondary => c(colors?.secondary);
+  TextStyle get onSecondary => c(colors?.onSecondary);
+  TextStyle get error => c(colors?.error);
 
 
   TextStyle get underline => copyWith(decoration: TextDecoration.underline);
@@ -29,5 +30,5 @@ extension TextStyleSizes on TextStyle {
   TextStyle get visible => copyWith(overflow: TextOverflow.visible);
 
   TextStyle alpha(double alpha) => copyWith(color: color!.withValues(alpha: alpha));
-  TextStyle c(Color color) => copyWith(color: color, decorationColor: color);
+  TextStyle c(Color? color) => copyWith(color: color, decorationColor: color);
 }

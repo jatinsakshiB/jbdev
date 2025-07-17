@@ -10,6 +10,13 @@ extension WidgetExtension on Widget {
       child: this,
     );
   }
+  /// Add padding to any widget
+  Widget withPaddingAll(double padding) {
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: this,
+    );
+  }
 
   /// Add symmetric padding
   Widget withSymmetricPadding({double vertical = 0, double horizontal = 0}) {

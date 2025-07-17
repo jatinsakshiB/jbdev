@@ -1,12 +1,179 @@
-# jbdev
 
-A collection of simple utilities, extensions, and helper functions created specifically for internal use across JBDEV projects.
+# 📦 `jbdev` (Internal Utility Package)
 
-> ⚠️ This package is not intended for general public use. It is maintained for internal development within the JBDEV team.
+A collection of extensions, widgets, and helpers to streamline JBDEV app development.
+Maintained by [Jatin Batra](https://jbdev.in) — not for public use.
 
-## About
+---
 
-This package is developed and maintained by [Jatin Batra](https://jbdev.in), a full-stack mobile and web developer. It is built to standardize and simplify commonly used logic, extensions, and formatting across all apps developed under the **JBDEV** brand.
+## 🔧 Core Setup
 
-Visit [jbdev.in](https://jbdev.in) to learn more about our products, services, and development solutions.
+Wrap your app:
 
+```dart
+App.init();
+runApp(Jbdev(
+  builder: (ctx, navKey) => MaterialApp(navigatorKey: navKey, home: HomePage()),
+));
+```
+
+Quick config:
+
+```dart
+App.currencySymbol = "₹";
+App.locale = JBLocale.en_IN;
+App.timezone = JBTimezone.ist;
+```
+
+---
+
+## ⚙️ `JBConfig` Settings
+
+Customize:
+
+* Default button styles
+* Popup / BottomSheet UI
+* Locale, timezone, symbol
+
+Override widgets:
+
+```dart
+JBConfig.defCurrencySymbol = '₹';
+JBConfig.defLocale = JBLocale.en_IN;
+JBConfig.defTimezone = JBTimezone.ist;
+
+JBConfig.loadingPopupWidget = (ctx) => MyCustomLoading();
+JBConfig.popupWidget = (ctx, popup) => MyCustomPopup(popup);
+JBConfig.bottomSheetWidget = (ctx, popup) => MyBottomSheet(popup);
+
+JBConfig.bottomSheetMaxHeight = 0.8;
+JBConfig.bottomSheetBorderRadius = 16;
+JBConfig.bottomSheetBackgroundColor = Colors.white;
+JBConfig.bottomSheetBarrierBlur = 4;
+
+JBConfig.popupBarrierColor = Colors.black54;
+JBConfig.popupBorderRadius = 16;
+JBConfig.popupPadding = EdgeInsets.all(26);
+JBConfig.popupBarrierBlur = 4;
+JBConfig.popupBackgroundColor = Colors.white;
+
+JBConfig.defaultButton = JBButtonProperties(
+color: Colors.blue,
+textColor: Colors.white,
+);
+
+JBConfig.buttons = {
+"success": JBButtonProperties(color: Colors.green, textColor: Colors.white),
+"error": JBButtonProperties(color: Colors.red, textColor: Colors.white),
+"primary:light": JBButtonProperties(color: Colors.blue.shade100, textColor: Colors.black),
+// Add more types as needed
+};
+
+```
+
+---
+
+## 📲 SharedPreferencesManager
+
+* `save()`, `get()`, `remove()`, `clear()`
+* Supports `String`, `bool`, `int`, `double`, `List<String>`, `toJson()` objects
+
+---
+
+## 🔄 Utilities
+
+### Loading
+
+```dart
+showLoading(); // show
+hideLoading(); // hide
+```
+
+### Popups
+
+```dart
+showJBPopup(popup);
+hideJBPopup("id");
+hideJBAllPopups();
+```
+
+---
+
+## 🖲 JBButton
+
+Custom-styled button via `JBConfig.buttons`:
+
+```dart
+JBButton(
+  text: "Save",
+  type: "success",
+  onPressed: () {},
+);
+```
+
+Supports icon, gradient, radius, etc.
+
+---
+
+## 🧠 Extensions (Quick Access)
+
+### BuildContext
+
+* `screenWidth`, `isDarkMode`
+* `push("/route")`, `launchAction(JBAction)`
+
+### Enum
+
+* `.fromString("value", fallback: ...)`
+
+### `DateTime`
+
+* `.toJBTimezone()`, `.toShortDate()`, `.toRelativeTime()`, `.age`, `.isWeekend`
+
+### `Color`
+
+* `HexColor.fromHex("#abc123")`
+* `color.toHex()`
+
+### `String`
+
+* `.camelCase`, `.snakeCase`, `.slugify()`, `.isEmail`, `.isPan`, `.toEnum(...)`
+
+### `num`
+
+* `.money()`, `.half`, `.pluralize("apple")`, `.seconds`
+
+### `Object?`
+
+* `.toNum()`, `.toBool()`, `.toDateTime()`, `.toList()`, `.isEmptyValue`
+
+### `TextStyle`
+
+* `.sm`, `.xl`, `.primary`, `.underline`, `.ellipsis`
+
+### `Widget`
+
+* `.withPadding()`, `.centered()`, `.onTap()`, `.scrollable()`, `.withSize()`
+
+---
+
+## 📝 Log Utility
+
+```dart
+Log.e("Error"); // 🔴
+Log.i("Info");  // 🔵
+Log.s("Success"); // 🟢
+```
+
+→ Debug only, uses ANSI color in terminal.
+
+---
+
+## ✅ Best Practices
+
+* Call `App.init()` early
+* Use fallback/defaults for missing styles
+* Centralize UI config via `JBConfig`
+* Use extensions for cleaner and faster UI
+
+---

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jbdev/jbdev.dart';
 
+import '../models/jb_text_field_properties.dart';
+
 
 class JBConfig {
   static String? baseUrl;
@@ -37,6 +39,9 @@ class JBConfig {
   static Color? popupBarrierColor = Colors.black54;
   static EdgeInsets popupPadding = EdgeInsets.all(26);
 
+
+  static JBTextFieldProperties defaultTextField = JBTextFieldProperties();
+  static Map<String, JBTextFieldProperties> textFields = {};
 
   static JBButtonProperties defaultButton = JBButtonProperties();
   /// Button style configuration map for JBButton.

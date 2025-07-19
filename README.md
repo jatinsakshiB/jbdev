@@ -188,8 +188,6 @@ try {
 
 ```
 
-→ Debug only, uses ANSI color in terminal.
-
 ---
 
 ## ✅ Best Practices

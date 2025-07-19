@@ -13,7 +13,7 @@ extension TextStyleSizes on TextStyle {
   TextStyle get xxxl => copyWith(fontSize: 32);
 
 
-  TextStyle primary(BuildContext context) => c(context.colors.secondary);
+  TextStyle primary(BuildContext context) => c(context.colors.primary);
   TextStyle onPrimary(BuildContext context) => c(context.colors.onPrimary);
   TextStyle secondary(BuildContext context) => c(context.colors.secondary);
   TextStyle onSecondary(BuildContext context) => c(context.colors.onSecondary);

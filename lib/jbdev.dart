@@ -19,6 +19,7 @@ export 'package:jbdev/enums/jb_timezone.dart';
 export 'package:jbdev/models/jb_action.dart';
 export 'package:jbdev/models/jb_popup.dart';
 export 'package:jbdev/models/jb_button_properties.dart';
+export 'package:jbdev/models/jb_text_field_properties.dart';
 
 export 'package:jbdev/helpers/loading_popup_manager.dart';
 export 'package:jbdev/helpers/jb_popup_manager.dart' show showJBPopup, hideJBPopup, hideJBAllPopups;
@@ -26,6 +27,7 @@ export 'package:jbdev/helpers/shared_preferences_manager.dart';
 export 'package:jbdev/helpers/toast_manager.dart';
 
 export 'package:jbdev/ui/widget/jb_button.dart';
+export 'package:jbdev/ui/widget/jb_text_field.dart';
 
 export 'package:jbdev/app.dart' show App;
 export 'package:jbdev/ui/widget/jbdev.dart';

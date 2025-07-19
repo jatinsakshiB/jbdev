@@ -6,6 +6,10 @@ import 'package:package_info_plus/package_info_plus.dart';
 ValueNotifier<int> appNotifier = ValueNotifier(0);
 
 class App{
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  static BuildContext? get context => navigatorKey.currentContext;
+
   static String _currencySymbol = JBConfig.defCurrencySymbol;
   static JBLocale _locale = JBConfig.defLocale;
   static JBTimezone _timezone = JBConfig.defTimezone;

@@ -6,6 +6,7 @@ import 'models/jb_popup.dart';
 
 void main() {
 
+  var controller = JBTextController();
   runApp(MaterialApp(
     home: Builder(
       builder: (context) {
@@ -14,19 +15,11 @@ void main() {
           body: Column(
             children: [
 
-              JBTextField(controller: JBTextController()..validate(JBValidators.email),),
+              JBTextField(controller: controller,),
 
               JBButton(onPressed: (){
-                JBPopup(
-                  title: 'Preview Title',
-                  content: 'This is a visual preview of JBPopup. <h1>This is a visual preview of JBPopup.</h1>',
-                  display: JBPopupDisplay.bottomSheet,
-                  position: JBPopupPosition.center,
-                  actions: [
-                    JBAction(label: 'Okay', onAction: () => print('Okay tapped'), metadata: {"button_type": "success"}),
-                    JBAction(label: 'Close', onAction: () => print('Okay tapped'), metadata: {"button_type": "error"}),
-                  ],
-                ).show(context);
+                controller..validate(JBValidators.email);
+
 
               }, text: "test", icon: Icon(Icons.remember_me), type: "success",),
             ],

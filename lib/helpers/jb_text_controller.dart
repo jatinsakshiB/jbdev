@@ -1,29 +1,29 @@
 import 'package:flutter/cupertino.dart';
 
 class JBTextController extends TextEditingController {
-  String? error;
+  final ValueNotifier<String?> errorNotifier = ValueNotifier(null);
+
 
   JBTextController({super.text});
 
   bool validate(String pattern, {String? emptyMsg, String? invalidMsg}) {
     if (text.trim().isEmpty) {
-      error = emptyMsg ?? 'This field is required';
+      showError(emptyMsg ?? 'This field is required');
     } else if (!RegExp(pattern).hasMatch(text.trim())) {
-      error = invalidMsg ?? 'Please enter a valid value';
+      showError(invalidMsg ?? 'Please enter a valid value');
     } else {
-      error = null;
+      clearError();
     }
     notifyListeners();
-    return error == null;
+    return errorNotifier.value == null;
+  }
+
+  void showError(String error) {
+    errorNotifier.value = error;
   }
 
   void clearError() {
-    error = null;
-    notifyListeners();
-  }
-  void showError(String error) {
-    this.error = error;
-    notifyListeners();
+    errorNotifier.value = null;
   }
 }
 

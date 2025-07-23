@@ -13,11 +13,15 @@ class App{
   static String _currencySymbol = JBConfig.defCurrencySymbol;
   static JBLocale _locale = JBConfig.defLocale;
   static JBTimezone _timezone = JBConfig.defTimezone;
+  static String _theme = "default";
 
   static String get currencySymbol => _currencySymbol;
   static JBLocale get locale => _locale;
   static String get localeCode => _locale.name;
   static JBTimezone get timezone => _timezone;
+  static ThemeData? get theme {
+    return JBConfig.themes[_theme];
+  }
 
   static set currencySymbol(String value) {
     _currencySymbol = value;
@@ -32,6 +36,11 @@ class App{
   static set timezone(JBTimezone value) {
     _timezone = value;
     SharedPreferencesManager.save("app.timezone", value.name);
+    appNotifier.value++;
+  }
+  static void setTheme(String value) {
+    _theme = value;
+    SharedPreferencesManager.save("app.theme", value);
     appNotifier.value++;
   }
 

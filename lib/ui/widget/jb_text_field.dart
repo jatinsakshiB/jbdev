@@ -13,7 +13,10 @@ class JBTextField extends StatelessWidget {
   final JBTextController? controller;
   final String? label;
   final String? hintText;
+  final Widget? prefixIcon;
   final Widget? prefix;
+  final Widget? suffixIcon;
+  final Widget? suffix;
   final TextInputType keyboardType;
   final String? type;
   final int? maxLength;
@@ -31,6 +34,9 @@ class JBTextField extends StatelessWidget {
     this.label,
     this.hintText,
     this.prefix,
+    this.suffix,
+    this.prefixIcon,
+    this.suffixIcon,
     this.keyboardType = TextInputType.text,
     this.type,
     this.maxLength,
@@ -53,6 +59,57 @@ class JBTextField extends StatelessWidget {
       properties = JBConfig.defaultTextField;
     }
 
+    var borderRadius = properties.borderRadius ?? BorderRadius.circular(properties.borderRadiusAll ?? 16);
+    var borderSide = properties.borderColor != null ? BorderSide(color: properties.borderColor!, width: properties.borderWidth ?? 2) : BorderSide.none;
+
+    Widget textField({JBTextFieldState? state}) =>  TextField(
+      controller: controller,
+      readOnly: readOnly,
+      onChanged: onChange,
+      onTap: onTap,
+      obscureText: state?.obscureText ?? false,
+      keyboardType: keyboardType,
+      textCapitalization: textCapitalization,
+      textInputAction: textInputAction,
+      enabled: state?.enabled,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      style: (properties.textStyle ?? context.textThemes.bodyMedium)?.c(properties.textColor),
+      cursorColor: properties.cursorColor,
+      decoration: InputDecoration(
+        fillColor: properties.color,
+        filled: properties.color != null,
+        contentPadding: properties.padding ?? EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        border: InputBorder.none,
+        hintText: hintText,
+        hintStyle: (properties.hintTextStyle ?? Theme.of(context).textTheme.labelLarge)?.c(properties.hintTextColor),
+        suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
+        prefix: prefix,
+        suffix: suffix,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: borderSide,
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: borderSide,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: borderSide,
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: borderSide,
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: borderSide,
+        ),
+      ),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -67,40 +124,13 @@ class JBTextField extends StatelessWidget {
 
         Material(
           elevation: properties.elevation ?? 0,
-          borderRadius: properties.borderRadius ?? BorderRadius.circular(properties.borderRadiusAll ?? 16),
+          borderRadius: borderRadius,
           color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-              color: properties.color,
-              borderRadius: properties.borderRadius ?? BorderRadius.circular(properties.borderRadiusAll ?? 16),
-              border: properties.borderColor != null ? Border.all(color: properties.borderColor!, width: properties.borderWidth ?? 2) : null,
-            ),
-            child: Row(
-              children: [
-                prefix ?? const SizedBox.shrink(),
-                Expanded(
-                  child: TextField(
-                    controller: controller,
-                    readOnly: readOnly,
-                    onChanged: onChange,
-                    onTap: onTap,
-                    keyboardType: keyboardType,
-                    textCapitalization: textCapitalization,
-                    textInputAction: textInputAction,
-                    maxLength: maxLength,
-                    maxLines: maxLines,
-                    style: (properties.textStyle ?? context.textThemes.bodyMedium)?.c(properties.textColor),
-                    cursorColor: properties.cursorColor,
-                    decoration: InputDecoration(
-                        contentPadding: properties.padding ?? EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        border: InputBorder.none,
-                        hintText: hintText,
-                        hintStyle: (properties.hintTextStyle ?? Theme.of(context).textTheme.labelLarge)?.c(properties.hintTextColor),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          child: controller == null ? textField() : ValueListenableBuilder(
+              valueListenable: controller!.stateNotifier,
+              builder: (context, state, _){
+                return textField(state: state);
+              }
           ),
         ),
 
@@ -108,10 +138,10 @@ class JBTextField extends StatelessWidget {
             valueListenable: controller!.errorNotifier,
             builder: (_, error, __){
               return error == null ? const SizedBox() : Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: properties.errorAlignment ?? MainAxisAlignment.end,
                 children: [
                   Text(
-                    error!,
+                    error,
                     style: (properties.errorTextStyle ?? context.textThemes.labelMedium?.error(context))?.c(properties.errorTextColor),
                     textAlign: TextAlign.end,
                   ),

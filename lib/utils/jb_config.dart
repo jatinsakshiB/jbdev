@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jbdev/jbdev.dart';
 
-import '../models/jb_text_field_properties.dart';
 
 
 class JBConfig {
   static String? baseUrl;
+  static Map<String, ThemeData> themes = {
+    "default": ThemeData()
+  };
 
   static String defCurrencySymbol = '₹';
   static JBLocale defLocale = JBLocale.en_IN;

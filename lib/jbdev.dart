@@ -1,5 +1,7 @@
 library;
 
+import 'package:fluttertoast/fluttertoast.dart';
+
 export 'package:jbdev/utils/jb_config.dart';
 export 'package:jbdev/utils/log.dart';
 
@@ -33,5 +35,6 @@ export 'package:jbdev/app.dart' show App;
 export 'package:jbdev/ui/widget/jbdev.dart';
 
 export 'package:dio/dio.dart' show FormData;
+export 'package:fluttertoast/fluttertoast.dart' show Toast;
 export 'package:jbdev/data/network/api.dart';
 export 'package:jbdev/data/network/api_methods.dart';

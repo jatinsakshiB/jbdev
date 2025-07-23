@@ -15,13 +15,13 @@ class SharedPreferencesManager {
     String? local = get("app.local");
     String? timezone = get("app.timezone");
 
-    if (currencySymbol.isNullOrEmpty) {
+    if (!currencySymbol.isNullOrEmpty) {
       App.currencySymbol = currencySymbol!;
     }
-    if (local.isNullOrEmpty) {
+    if (!local.isNullOrEmpty) {
       App.locale = JBLocale.values.fromString(local);
     }
-    if (timezone.isNullOrEmpty) {
+    if (!timezone.isNullOrEmpty) {
       App.timezone = JBTimezone.values.fromString(timezone);
     }
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class JBTextController extends TextEditingController {
+  final ValueNotifier<JBTextFieldState> stateNotifier = ValueNotifier(const JBTextFieldState());
   final ValueNotifier<String?> errorNotifier = ValueNotifier(null);
-
 
   JBTextController({super.text});
 
@@ -24,6 +24,31 @@ class JBTextController extends TextEditingController {
 
   void clearError() {
     errorNotifier.value = null;
+  }
+
+  void obscureText(bool obscure) {
+    stateNotifier.value = stateNotifier.value.copyWith(obscureText: obscure);
+  }
+
+  void enabled(bool enabled) {
+    stateNotifier.value = stateNotifier.value.copyWith(enabled: enabled);
+  }
+
+  bool get isObscured => stateNotifier.value.obscureText;
+  bool get isEnabled => stateNotifier.value.enabled;
+}
+
+class JBTextFieldState {
+  final bool enabled;
+  final bool obscureText;
+
+  const JBTextFieldState({this.enabled = true, this.obscureText = false});
+
+  JBTextFieldState copyWith({bool? enabled, bool? obscureText}) {
+    return JBTextFieldState(
+      enabled: enabled ?? this.enabled,
+      obscureText: obscureText ?? this.obscureText,
+    );
   }
 }
 

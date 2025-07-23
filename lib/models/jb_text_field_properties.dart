@@ -17,6 +17,7 @@ class JBTextFieldProperties{
   EdgeInsetsGeometry? padding;
   double? elevation;
   Color? cursorColor;
+  MainAxisAlignment? errorAlignment;
 
 
   JBTextFieldProperties({
@@ -35,6 +36,7 @@ class JBTextFieldProperties{
     this.errorTextColor,
     this.padding,
     this.elevation,
-    this.cursorColor
+    this.cursorColor,
+    this.errorAlignment
   });
 }

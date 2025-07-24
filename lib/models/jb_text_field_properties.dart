@@ -4,6 +4,10 @@ class JBTextFieldProperties{
   Color? color;
   Color? borderColor;
   double? borderWidth;
+  Color? disabledBorderColor;
+  double? disabledBorderWidth;
+  Color? focusedBorderColor;
+  double? focusedBorderWidth;
   BorderRadius? borderRadius;
   double? borderRadiusAll;
   TextStyle? textStyle;

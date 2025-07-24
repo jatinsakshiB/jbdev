@@ -60,7 +60,6 @@ class JBTextField extends StatelessWidget {
     }
 
     var borderRadius = properties.borderRadius ?? BorderRadius.circular(properties.borderRadiusAll ?? 16);
-    var borderSide = properties.borderColor != null ? BorderSide(color: properties.borderColor!, width: properties.borderWidth ?? 2) : BorderSide.none;
 
     Widget textField({JBTextFieldState? state}) =>  TextField(
       controller: controller,
@@ -89,23 +88,15 @@ class JBTextField extends StatelessWidget {
         suffix: suffix,
         enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: borderSide,
+          borderSide: properties.borderColor != null ? BorderSide(color: properties.borderColor!, width: properties.borderWidth ?? 2) : BorderSide.none,
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: borderSide,
+          borderSide: properties.disabledBorderColor != null ? BorderSide(color: properties.disabledBorderColor!, width: properties.disabledBorderWidth ?? 2) : BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: borderSide,
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: borderRadius,
-          borderSide: borderSide,
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: borderRadius,
-          borderSide: borderSide,
+          borderSide: properties.focusedBorderColor != null ? BorderSide(color: properties.focusedBorderColor!, width: properties.focusedBorderWidth ?? 2) : BorderSide.none,
         ),
       ),
     );

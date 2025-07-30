@@ -52,7 +52,7 @@ class _JBPopupManager {
           );
         },
         isDismissible: popup.dismissible,
-        backgroundColor: JBConfig.bottomSheetBackgroundBuilder != null ? null : popup.backgroundColor ?? JBConfig.bottomSheetBackgroundColor,
+        backgroundColor: JBConfig.bottomSheetBackgroundBuilder != null ? Colors.transparent : popup.backgroundColor ?? JBConfig.bottomSheetBackgroundColor,
         barrierBlur: JBConfig.bottomSheetBarrierBlur,
         modalBarrierColor: JBConfig.popupBarrierColor,
         shape: JBConfig.bottomSheetBackgroundBuilder != null ? null : RoundedRectangleBorder(

@@ -34,6 +34,10 @@ class JBBottomSheetWidget extends StatelessWidget {
                 data: popup.content,
               ).withWidth(double.infinity).withSymmetricPadding(horizontal: 16),
             ),
+
+          if (popup.contentBuilder != null)
+            popup.contentBuilder!(context).withTopPadding(12),
+
           26.heightBox,
           GridView(
             shrinkWrap: true,

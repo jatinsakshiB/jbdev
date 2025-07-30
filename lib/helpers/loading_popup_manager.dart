@@ -13,7 +13,7 @@ void showLoading(BuildContext context){
         return PopScope(
           canPop: false,
           child: Builder(
-              builder: JBConfig.loadingPopupWidget ?? (context) {
+              builder: JBConfig.loadingPopupBuilder ?? (context) {
                 return LoadingPopupWidget();
               }
           ).centered(),

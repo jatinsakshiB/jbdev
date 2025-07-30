@@ -17,9 +17,10 @@ class JBConfig {
   static ApiConfig apiConfig = ApiConfig();
   static ToastConfig toastConfig = ToastConfig();
 
-  static Widget Function(BuildContext context)? loadingPopupWidget;
-  static Widget Function(BuildContext context, JBPopup popup)? popupWidget;
-  static Widget Function(BuildContext context, JBPopup popup)? bottomSheetWidget;
+  static Widget Function(BuildContext context)? loadingPopupBuilder;
+  static Widget Function(BuildContext context, JBPopup popup)? popupBuilder;
+  static Widget Function(BuildContext context, JBPopup popup)? bottomSheetBuilder;
+  static Widget Function(BuildContext context, JBPopup popup, Widget Function() child)? bottomSheetBackgroundBuilder;
 
   /// Defines the maximum height of the bottom sheet as a fraction of the screen height.
   ///
@@ -33,7 +34,7 @@ class JBConfig {
   /// ```
   static double bottomSheetMaxHeight = 0.8;
   static double? bottomSheetBarrierBlur;
-  static double? popupBarrierBlur = 4;
+  static double? popupBarrierBlur;
   static double bottomSheetBorderRadius = 16;
   static double popupBorderRadius = 16;
   static Color? bottomSheetBackgroundColor;

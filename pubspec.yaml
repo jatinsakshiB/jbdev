@@ -2,7 +2,7 @@ name: jbdev
 description: >
   A lightweight Flutter utility package containing custom extensions, validators, 
   and helper functions built for internal use across JBDEV apps and projects.
-version: 0.0.12
+version: 0.0.15
 homepage: https://jbdev.in
 repository: https://github.com/jatinsakshiB/jbdev
 issue_tracker: https://github.com/jatinsakshiB/jbdev/issues

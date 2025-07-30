@@ -28,6 +28,7 @@ class JBPopup {
   final String? image;
   final String? title;
   final String? content;
+  final Widget Function(BuildContext)? contentBuilder;
   final bool dismissible;
   final num? delay;
   final List<JBAction> actions;
@@ -41,6 +42,7 @@ class JBPopup {
     this.image,
     this.title,
     this.content,
+    this.contentBuilder,
     this.dismissible = true,
     this.delay,
     this.actions = const [],

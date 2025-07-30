@@ -38,22 +38,24 @@ class _JBPopupManager {
             ),
             child: Builder(
               builder: (context){
-                if (popup.builder != null){
-                  return popup.builder!(context, popup);
-                }
-                if (JBConfig.bottomSheetWidget != null){
-                  return JBConfig.bottomSheetWidget!(context, popup);
-                }
-                return JBBottomSheetWidget(popup: popup);
+                final child = popup.builder != null
+                    ? popup.builder!(context, popup)
+                    : JBConfig.bottomSheetBuilder != null
+                    ? JBConfig.bottomSheetBuilder!(context, popup)
+                    : JBBottomSheetWidget(popup: popup);
+
+                return JBConfig.bottomSheetBackgroundBuilder != null
+                    ? JBConfig.bottomSheetBackgroundBuilder!(context, popup, () => child)
+                    : child;
               },
             ),
           );
         },
         isDismissible: popup.dismissible,
-        backgroundColor: popup.backgroundColor ?? JBConfig.bottomSheetBackgroundColor,
+        backgroundColor: JBConfig.bottomSheetBackgroundBuilder != null ? null : popup.backgroundColor ?? JBConfig.bottomSheetBackgroundColor,
         barrierBlur: JBConfig.bottomSheetBarrierBlur,
         modalBarrierColor: JBConfig.popupBarrierColor,
-        shape: RoundedRectangleBorder(
+        shape: JBConfig.bottomSheetBackgroundBuilder != null ? null : RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(JBConfig.bottomSheetBorderRadius)),
         ),
         isScrollControlled: true,
@@ -92,8 +94,8 @@ class _JBPopupManager {
                           if (popup.builder != null){
                             return popup.builder!(context, popup);
                           }
-                          if (JBConfig.popupWidget != null){
-                            return JBConfig.popupWidget!(context, popup);
+                          if (JBConfig.popupBuilder != null){
+                            return JBConfig.popupBuilder!(context, popup);
                           }
                           return JBPopupWidget(popup: popup);
                         },

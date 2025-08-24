@@ -16,11 +16,13 @@ class JBConfig {
 
   static ApiConfig apiConfig = ApiConfig();
   static ToastConfig toastConfig = ToastConfig();
+  static TapEffectConfig tapEffectConfig = TapEffectConfig();
 
   static Widget Function(BuildContext context)? loadingPopupBuilder;
   static Widget Function(BuildContext context, JBPopup popup)? popupBuilder;
   static Widget Function(BuildContext context, JBPopup popup)? bottomSheetBuilder;
   static Widget Function(BuildContext context, JBPopup popup, Widget Function() child)? bottomSheetBackgroundBuilder;
+  static double? bottomSheetActionsHeight = 54;
 
   /// Defines the maximum height of the bottom sheet as a fraction of the screen height.
   ///
@@ -43,6 +45,7 @@ class JBConfig {
   static EdgeInsets popupPadding = EdgeInsets.all(26);
 
 
+  static JBTextFieldErrors defaultTextFieldErrors = JBTextFieldErrors();
   static JBTextFieldProperties defaultTextField = JBTextFieldProperties();
   static Map<String, JBTextFieldProperties> textFields = {};
 
@@ -83,6 +86,17 @@ class JBConfig {
     )
   };
 
+}
+
+class TapEffectConfig{
+  Color? splashColor;
+  Color? highlightColor;
+  Color? hoverColor;
+  Color? focusColor;
+  Duration? hoverDuration;
+  MouseCursor? mouseCursor;
+
+  TapEffectConfig({this.splashColor, this.highlightColor, this.hoverColor, this.focusColor, this.hoverDuration, this.mouseCursor});
 }
 
 class ToastConfig{

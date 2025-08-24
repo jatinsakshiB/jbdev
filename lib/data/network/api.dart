@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:jbdev/helpers/jb_api_exception.dart';
 
 import 'api_methods.dart';
 import 'dio_client.dart';
@@ -16,13 +17,17 @@ class Api {
     var method = apiMethod.name.toUpperCase();
 
     bool isData = apiMethod == ApiMethods.post || apiMethod == ApiMethods.put;
-    final response = await dio.request(endPoint,
-        data: isData ? data : null,
-        queryParameters: !isData ? data : null,
-        options: Options(
-          method: method,
-        ),
-        cancelToken: cancelToken);
-    return response.data;
+    try{
+      final response = await dio.request(endPoint,
+          data: isData ? data : null,
+          queryParameters: !isData ? data : null,
+          options: Options(
+            method: method,
+          ),
+          cancelToken: cancelToken);
+      return response.data;
+    }catch(e, stackTrace){
+      throw JBApiException(e, stackTrace);
+    }
   }
 }

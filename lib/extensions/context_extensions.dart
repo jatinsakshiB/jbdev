@@ -28,7 +28,7 @@ extension ContextExtension on BuildContext {
   }
 
 
-  void launchAction(JBAction? action) {
+  Future<bool> launchAction(JBAction? action) async{
     if (action != null) {
       if (action.url != null){
         if (action.url!.startsWith("http") ||
@@ -37,13 +37,17 @@ extension ContextExtension on BuildContext {
           launchUrlString(action.url!, mode: LaunchMode.externalApplication);
         } else if (action.url == "pop") {
           pop();
+          return false;
         }else{
           launchUrlString(action.url!);
         }
       }else if (action.popup != null){
         action.popup?.show(this);
       }
-      action.onAction?.call();
+      if (action.onAction != null){
+        return await action.onAction!.call();
+      }
     }
+    return true;
   }
 }

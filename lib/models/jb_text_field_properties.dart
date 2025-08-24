@@ -11,10 +11,12 @@ class JBTextFieldProperties{
   BorderRadius? borderRadius;
   double? borderRadiusAll;
   TextStyle? textStyle;
+  TextStyle? disableTextStyle;
   TextStyle? labelTextStyle;
   TextStyle? hintTextStyle;
   TextStyle? errorTextStyle;
   Color? textColor;
+  Color? disableTextColor;
   Color? labelTextColor;
   Color? hintTextColor;
   Color? errorTextColor;
@@ -22,6 +24,7 @@ class JBTextFieldProperties{
   double? elevation;
   Color? cursorColor;
   MainAxisAlignment? errorAlignment;
+  double? height;
 
 
   JBTextFieldProperties({
@@ -45,6 +48,17 @@ class JBTextFieldProperties{
     this.padding,
     this.elevation,
     this.cursorColor,
-    this.errorAlignment
+    this.errorAlignment,
+    this.height,
+  });
+}
+
+class JBTextFieldErrors{
+  String Function(String)? requiredErrorText;
+  String Function(String)? invalidErrorText;
+
+  JBTextFieldErrors({
+    this.requiredErrorText,
+    this.invalidErrorText,
   });
 }

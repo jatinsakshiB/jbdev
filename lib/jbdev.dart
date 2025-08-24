@@ -27,14 +27,22 @@ export 'package:jbdev/helpers/loading_popup_manager.dart';
 export 'package:jbdev/helpers/jb_popup_manager.dart' show showJBPopup, hideJBPopup, hideJBAllPopups;
 export 'package:jbdev/helpers/shared_preferences_manager.dart';
 export 'package:jbdev/helpers/toast_manager.dart';
+export 'package:jbdev/helpers/jb_api_exception.dart' show JBApiException;
 
 export 'package:jbdev/ui/widget/jb_button.dart';
 export 'package:jbdev/ui/widget/jb_text_field.dart';
 
 export 'package:jbdev/app.dart' show App;
 export 'package:jbdev/ui/widget/jbdev.dart';
+export 'package:jbdev/ui/widget/shared_preferances_builder.dart' show SharedPreferencesBuilder;
 
-export 'package:dio/dio.dart' show FormData;
+export 'package:flutter_html/flutter_html.dart' show Html;
+export 'package:jbdev/helpers/bottom_end_notifier.dart' show BottomEndNotifier;
+
+export 'package:dio/dio.dart' show FormData, MultipartFile, CancelToken;
 export 'package:fluttertoast/fluttertoast.dart' show Toast;
 export 'package:jbdev/data/network/api.dart';
 export 'package:jbdev/data/network/api_methods.dart';
+export 'package:jbdev/ui/widget/jb_text.dart' show JBText;
+
+export 'package:jbdev/helpers/painter/bottom_nav_bar_painters.dart' show BumpNavBarPainter;

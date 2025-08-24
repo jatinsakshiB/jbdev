@@ -24,6 +24,16 @@ extension StringExtension on String? {
   /// Converts string to URL slug (e.g., "Hello World!" → "hello-world")
   String get slugify => isNullOrEmpty ? "" : this!.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-').replaceAll(RegExp(r'^-+|-+$'), '');
 
+  /// Converts slug to string (e.g., "hello-world" → "Hello World")
+  String get unslugify {
+    if (this == null || this!.isEmpty) return "";
+    return this!
+        .replaceAll('-', ' ') // replace dashes with spaces
+        .split(' ')           // split into words
+        .map((word) => word.capitalize) // capitalize each
+        .join(' ');
+  }
+
   /// Returns true if the string represents a numeric value.
   bool get isNumeric => !isNullOrEmpty && num.tryParse(this!) != null;
 

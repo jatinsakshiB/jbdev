@@ -47,7 +47,19 @@ class App{
   static PackageInfo? packageInfo;
 
   static Future<void> init() async{
-    SharedPreferencesManager.init();
+    await SharedPreferencesManager.init();
     packageInfo = await PackageInfo.fromPlatform();
+
+    final savedCurrency = SharedPreferencesManager.get("app.currency_symbol");
+    final savedLocale = SharedPreferencesManager.get("app.locale");
+    final savedTimezone = SharedPreferencesManager.get("app.timezone");
+    final savedTheme = SharedPreferencesManager.get("app.theme");
+
+    if (savedCurrency != null) _currencySymbol = savedCurrency;
+
+    if (savedLocale != null) _locale = JBLocale.values.fromString(savedLocale);
+    if (savedTimezone != null) _timezone = JBTimezone.values.fromString(savedTimezone,);
+    if (savedTheme != null) _theme = savedTheme;
+    appNotifier.value++;
   }
 }

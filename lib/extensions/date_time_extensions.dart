@@ -1,5 +1,8 @@
 
+import 'dart:ui';
+
 import 'package:intl/intl.dart';
+import 'package:jbdev/enums/jb_locale.dart';
 import 'package:jbdev/enums/jb_timezone.dart';
 
 import '../app.dart';
@@ -13,23 +16,23 @@ extension DateTimeExtensions on DateTime {
 
 
   /// Format using a custom pattern (default 'yyyy-MM-dd')
-  String toFormattedDate({String pattern = 'yyyy-MM-dd'}) {
-    return DateFormat(pattern, App.localeCode).format(toJBTimezone());
+  String toFormattedDate({String pattern = 'yyyy-MM-dd', JBLocale? locale}) {
+    return DateFormat(pattern, locale?.name ?? App.localeCode).format(toJBTimezone());
   }
 
   /// Format: 'MMM dd, yyyy' → Example: 'Feb 15, 2025'
-  String toShortDate() {
-    return DateFormat('MMM dd, yyyy', App.localeCode).format(toJBTimezone());
+  String toShortDate({JBLocale? locale}) {
+    return DateFormat('MMM dd, yyyy', locale?.name ?? App.localeCode).format(toJBTimezone());
   }
 
   /// Format: 'hh:mm a' → Example: '10:30 AM'
-  String toTime() {
-    return DateFormat('hh:mm a', App.localeCode).format(toJBTimezone());
+  String toTime({JBLocale? locale}) {
+    return DateFormat('hh:mm a', locale?.name ?? App.localeCode).format(toJBTimezone());
   }
 
   /// Format: 'dd MMM ''yy, hh:mma' → Example: '15 Feb '25, 10:30AM'
-  String toFullDateTime() {
-    return DateFormat("dd MMM ''yy, hh:mma", App.localeCode).format(toJBTimezone());
+  String toFullDateTime({JBLocale? locale}) {
+    return DateFormat("dd MMM ''yy, hh:mma", locale?.name ?? App.localeCode).format(toJBTimezone());
   }
 
   /// Relative string like 'Today', 'Yesterday', '2 days ago'

@@ -15,3 +15,14 @@ extension HexColor on Color {
       '${(g * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Convert green to int
       '${(b * 255).toInt().toRadixString(16).padLeft(2, '0')}'; // Convert blue to int
 }
+
+extension ColorExtensions on Color{
+  Color withJbAlpha(int alpha, {Color? baseColor}){
+    final colorWithAlpha = withValues(alpha: alpha/100);
+
+    if (baseColor != null){
+      return Color.alphaBlend(colorWithAlpha, baseColor);
+    }
+    return colorWithAlpha;
+  }
+}

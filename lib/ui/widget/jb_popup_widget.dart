@@ -51,11 +51,11 @@ class JBPopupWidget extends StatelessWidget {
             children: (popup.actions).map((action) {
               return JBButton(
                 text: action.label ?? "",
-                onPressed: () {
-                  if (action.url != "pop"){
+                onPressed: () async {
+                  var hide = await context.launchAction(action);
+                  if (hide){
                     hideJBPopup(popup.id);
                   }
-                  context.launchAction(action);
                 },
                 type: action.getButtonType(),
               );

@@ -4,7 +4,7 @@ class JBAction {
   String? label;
   String? url;
   Map<String, dynamic>? metadata;
-  Function? onAction;
+  Future<bool> Function()? onAction;
   JBPopup? popup;
 
 

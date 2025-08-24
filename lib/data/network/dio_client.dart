@@ -69,8 +69,8 @@ class DioClient {
       options.headers['App-Name'] = info.appName;
       options.headers['App-Version'] = info.buildNumber;
       options.headers['App-Version-Name'] = info.version;
-      options.headers['App-Updated-Time'] = info.updateTime?.toFullDateTime();
-      options.headers['App-Install-Time'] = info.installTime?.toFullDateTime();
+      options.headers['App-Updated-Time'] = info.updateTime?.toFullDateTime(locale: JBLocale.en_US);
+      options.headers['App-Install-Time'] = info.installTime?.toFullDateTime(locale: JBLocale.en_US);
       options.headers['App-Install-Store'] = info.installerStore;
     }
 

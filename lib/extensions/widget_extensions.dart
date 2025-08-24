@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:jbdev/jbdev.dart';
 
 
 extension WidgetExtension on Widget {
 
+  /// Add padding to any widget
+  Widget withPaddingOnly({double left = 0, double top = 0, double right = 0, double bottom = 0}) {
+    return Padding(
+      padding: EdgeInsets.only(left: left, right: right, top: top, bottom: bottom),
+      child: this,
+    );
+  }
   /// Add padding to any widget
   Widget withPadding([EdgeInsetsGeometry padding = const EdgeInsets.all(8)]) {
     return Padding(
@@ -95,21 +103,26 @@ extension WidgetExtension on Widget {
   }
 
   /// Add tap functionality without manually wrapping with GestureDetector
-  Widget onTap(VoidCallback onTap) {
+  Widget onTap(VoidCallback? onTap) {
     return GestureDetector(
       onTap: onTap,
       child: this,
     );
   }
 
-  Widget onTapWithEffect(VoidCallback onTap, {Color? effectColor, ShapeBorder? shape, BorderRadius? borderRadius}) {
+  Widget onTapWithEffect(VoidCallback? onTap, {Color? effectColor, ShapeBorder? shape, BorderRadius? borderRadius}) {
+    var config = JBConfig.tapEffectConfig;
     return Material(
       color: Colors.transparent,
       shape: shape,
       child: InkWell(
         onTap: onTap,
-        splashColor: effectColor ?? Colors.white.withValues(alpha: .2),
-        highlightColor: effectColor ?? Colors.white.withValues(alpha: .2),
+        splashColor: effectColor ?? config.splashColor,
+        highlightColor: effectColor ?? config.highlightColor,
+        hoverColor: config.hoverColor,
+        hoverDuration: config.hoverDuration,
+        focusColor: config.focusColor,
+        mouseCursor: config.mouseCursor,
         customBorder: shape,
         borderRadius: borderRadius,
         child: this,
@@ -119,16 +132,16 @@ extension WidgetExtension on Widget {
 
 
   /// Add width
-  Widget withWidth(double width) {
-    return SizedBox(
+  Widget withWidth(double? width) {
+    return width == null ? this : SizedBox(
       width: width,
       child: this,
     );
   }
 
   /// Add height
-  Widget withHeight(double height) {
-    return SizedBox(
+  Widget withHeight(double? height) {
+    return height == null ? this : SizedBox(
       height: height,
       child: this,
     );
